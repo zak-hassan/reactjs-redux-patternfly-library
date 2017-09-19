@@ -1,14 +1,17 @@
 import React,{Component} from 'react';
+import { connect } from "react-redux";
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
+import { toggleModal } from '../../modal/modalActions'
 
 class ModalComponentDialog extends Component{
   // Ensure that the toggleModal is the same that is passed to
   // ButtonModal
   static get propTypes() {
     return {
+      mid: PropTypes.string.isRequired,
       toggleModal: PropTypes.func.isRequired,
-      isOpen: PropTypes.bool.isRequired,
+      modalState: PropTypes.object.isRequired,
       modalTitle: PropTypes.string.isRequired,
       modalContent: PropTypes.element.isRequired,
       modalFooter: PropTypes.element,
@@ -21,10 +24,19 @@ class ModalComponentDialog extends Component{
   }
 
   closeModal(){
-    this.props.toggleModal();
+    this.props.toggleModal(this.props.mid);
+  }
+
+  /* Create Modal on first render if it doesn't exist */
+  createModal() {
+    if (this.props.modalState[this.props.mid] === undefined) {
+      this.props.modalState[this.props.mid] = false;
+    }
   }
 
   render(){
+    this.createModal();
+
     /*const status = modalStatus ? "Verdadero": "Falso";*/
     let footer = null;
     if(this.props.modalFooter){
@@ -39,7 +51,7 @@ class ModalComponentDialog extends Component{
     return (
       <div>
         <Modal
-          isOpen={this.props.isOpen}
+          isOpen={this.props.modalState[this.props.mid]}
           contentLabel="Modal"
           onRequestClose={this.closeModal}
           className="modal-dialog">
@@ -61,7 +73,19 @@ class ModalComponentDialog extends Component{
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    modalState: state.modalReducer.modals,
+  }
+};
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleModal: (mid) => {
+      dispatch(toggleModal(mid))
+    },
+  }
+};
 
-export default ModalComponentDialog;
+export default connect(mapStateToProps, mapDispatchToProps)(ModalComponentDialog);
 

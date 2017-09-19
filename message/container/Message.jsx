@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ReactCSSTransitionReplace from "react-css-transition-replace";
+import { connect } from "react-redux";
+import { clearMessage } from "../messageActions";
+
 
 class Message extends Component {
   static get propTypes() {
@@ -37,4 +40,21 @@ class Message extends Component {
   }
 }
 
-export default Message;
+const mapStateToProps = (state) => {
+  return {
+    message: state.messageReducer.message,
+    messageType: state.messageReducer.messageType,
+    icon: state.messageReducer.icon,
+    visible: state.messageReducer.visible,
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    clearMessage: () => {
+      dispatch(clearMessage())
+    },
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Message);

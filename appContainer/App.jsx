@@ -4,19 +4,12 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import NavBar from "../navBar/components/NavBar.jsx";
-import Message from "../message/components/Message.jsx";
+import Message from "../message/container/Message.jsx";
 
 class App extends Component {
 
   static get propTypes() {
     return {
-      // Message Component props
-      message: PropTypes.string,
-      messageType: PropTypes.string,
-      icon: PropTypes.string,
-      visible: PropTypes.bool,
-      clearMessage: PropTypes.func,
-
       // Config Props, inherited from parent
       viewsConfig: PropTypes.array.isRequired,
       navbarConfig: PropTypes.object.isRequired,
@@ -41,11 +34,7 @@ class App extends Component {
       <Router>
         <div className="app">
           <NavBar config={this.props.navbarConfig}/>
-          <Message message={this.props.message}
-                   messageType={this.props.messageType}
-                   icon={this.props.icon}
-                   visible={this.props.visible}
-                   clearMessage={this.props.clearMessage}/>
+          <Message/>
           {this._createSwitches()}
         </div>
       </Router>
@@ -53,21 +42,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    message: state.messageReducer.message,
-    messageType: state.messageReducer.messageType,
-    icon: state.messageReducer.icon,
-    visible: state.messageReducer.visible,
-  }
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    clearMessage: () => {
-      dispatch(clearMessage())
-    },
-  }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

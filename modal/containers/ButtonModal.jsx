@@ -1,5 +1,7 @@
 import React,{ Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from "react-redux";
+import { toggleModal } from '../../modal/modalActions'
 
 
 class ButtonComponent extends Component{
@@ -19,7 +21,7 @@ class ButtonComponent extends Component{
   }
 
   openModel(){
-    this.props.toggleModal();
+    this.props.toggleModal(this.props.mid);
   }
 
   render(){
@@ -31,5 +33,21 @@ class ButtonComponent extends Component{
   }
 }
 
-export default ButtonComponent;
+const mapStateToProps = (state) => {
+  return {
+    modalState: state.modalReducer.modals,
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleModal: (mid) => {
+      dispatch(toggleModal(mid))
+    },
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ButtonComponent);
+
+
 

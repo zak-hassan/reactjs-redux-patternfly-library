@@ -1,16 +1,21 @@
 import { MODAL } from "./modalConstants"
 
-export function toggleCartModal(){
+export function toggleModal(mid){
   return {
     type: MODAL.TOGGLE_MODAL,
-    payload: "add_to_cart_modal"
+    payload: mid
   };
 }
 
-export function toggleShowCartModal(){
+export function addModal(mid){
   return {
-    type: MODAL.TOGGLE_MODAL,
-    payload: "show_cart_modal",
-  }
+    type: MODAL.ADD_MODAL,
+    payload: mid
+  };
 }
 
+export function handleAddModal(mid){
+  return (dispatch) => {
+    dispatch(addModal(mid));
+  };
+}

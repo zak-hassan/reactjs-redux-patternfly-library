@@ -1,8 +1,7 @@
 import { MODAL } from "./modalConstants"
 
 const initialState = {
-  add_to_cart_modal: false,
-  show_cart_modal: false,
+  modals: {}
 };
 
 const modalReducer = function(state = initialState, action){
@@ -10,7 +9,16 @@ const modalReducer = function(state = initialState, action){
     case MODAL.TOGGLE_MODAL: {
       let mid = action.payload;
       state = {...state};
-      state[mid] = (state[mid] === false);
+      state.modals = {...state.modals};
+
+      state.modals[mid] = (state.modals[mid] === false);
+      return state;
+    }
+    case MODAL.ADD_MODAL: {
+      let mid = action.payload;
+      state = {...state};
+      state.modals = {...state.modals};
+      state.modals[mid] = false;
       return state;
     }
     default:
