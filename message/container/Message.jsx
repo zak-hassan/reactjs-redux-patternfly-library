@@ -4,8 +4,7 @@ import ReactCSSTransitionReplace from "react-css-transition-replace";
 import { connect } from "react-redux";
 import { clearMessage } from "../messageActions";
 
-
-class Message extends Component {
+export class Message extends Component {
   static get propTypes() {
     return {
       message: PropTypes.string,
@@ -25,8 +24,7 @@ class Message extends Component {
       <ReactCSSTransitionReplace
         transitionName="fade"
         transitionEnterTimeout={1000}
-        transitionLeaveTimeout={1000}
-      >
+        transitionLeaveTimeout={1000}>
         {this.props.visible &&
         <div className={"alert alert-" + this.props.messageType + " alert-dismissable"}>
           <button type="button" className="close" data-dismiss="alert" aria-hidden="true" onClick={this.handleClick.bind(this)}>

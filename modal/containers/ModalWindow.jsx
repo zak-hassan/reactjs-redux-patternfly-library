@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 import { toggleModal } from '../../modal/modalActions'
 
-class ModalComponentDialog extends Component{
+export class ModalComponentDialog extends Component{
   // Ensure that the toggleModal is the same that is passed to
   // ButtonModal
   static get propTypes() {
