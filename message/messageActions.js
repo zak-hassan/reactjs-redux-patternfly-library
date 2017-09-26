@@ -22,11 +22,16 @@ export function clearMessage() {
   }
 }
 
+const delay = (ms) => new Promise(resolve =>
+  setTimeout(resolve, ms)
+);
+
 export function setMessageWithTimeout(message, type) {
   return(dispatch) => {
     dispatch(setMessage(message, type));
-    setTimeout(() => {
-      dispatch(setVisible(false))}, 3000);
-    }
+    return delay(3000).then(()=>{
+      dispatch(setVisible(false));
+    });
+  }
 }
 

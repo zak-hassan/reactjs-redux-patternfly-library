@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import NavBar from "../navBar/components/NavBar.jsx";
 import Message from "../message/container/Message.jsx";
 
-class App extends Component {
+export class App extends Component {
 
   static get propTypes() {
     return {

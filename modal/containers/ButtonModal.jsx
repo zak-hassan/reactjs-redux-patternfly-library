@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { toggleModal } from '../../modal/modalActions'
 
-
-class ButtonComponent extends Component{
+export class ButtonComponent extends Component{
   // Ensure that the toggleModal is the same that is passed to
   // ModalComponentDialog
   static get propTypes() {

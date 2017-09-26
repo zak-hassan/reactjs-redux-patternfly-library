@@ -4,7 +4,7 @@ import { IndexLinkContainer, LinkContainer } from "react-router-bootstrap";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-class NavBar extends Component {
+export class NavBar extends Component {
 
   static get propTypes(){
     return {
