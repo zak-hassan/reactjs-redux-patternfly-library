@@ -1,28 +1,21 @@
-import React from 'react';
+import React, { Component } from "react";
 import { expect } from 'chai';
 import { App } from '../../appContainer/App';
 import { shallow } from 'enzyme';
-import thunk from 'redux-thunk';
-import configureStore from 'redux-mock-store'
+
+class testComponent extends Component{
+  static render(){
+    return <p>Test Render</p>
+  }
+}
 
 let viewsConfig = [
-  // Insert views and their path mappings
-  {component: <div>1</div>, path: '/'},
-  {component: <div>2</div>, path: '/listView'},
-  {component: <div>3</div>, path: 'emptyState'}];
+  {component: testComponent, path: '/'},
+];
 
 let navbarConfig = {
-  // The different tabs and the link to where they are routed to.
-  categories: [
-    {title: 'Dashboard', link: '/'},
-    {title: 'List View', link: '/listView'},
-    {title: 'Empty State', link: '/emptyState'},
-  ],
-  // The title image placed at the top, above nav.
-  titleSrc: {
-    path: '../static/build/img/brand.svg',
-    alt: 'Patternfly Demo App'
-  }
+  categories: [{title: 'Dashboard', link: '/'},],
+  titleSrc: {path: '../static/build/img/brand.svg', alt: 'Patternfly Demo App'}
 };
 
 function setup() {

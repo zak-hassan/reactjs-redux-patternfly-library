@@ -10,7 +10,6 @@ const modalReducer = function(state = initialState, action){
       let mid = action.payload;
       state = {...state};
       state.modals = {...state.modals};
-
       state.modals[mid] = (state.modals[mid] === false);
       return state;
     }

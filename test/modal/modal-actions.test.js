@@ -1,4 +1,3 @@
-// TODO
 import React from 'react';
 import { expect } from 'chai';
 import * as actions from '../../modal/modalActions'
@@ -13,5 +12,29 @@ describe('MODAL -> ACTION TESTS', () => {
       payload: '001'
     };
     expect(actions.toggleModal('001')).to.deep.equal(expectedAction)
+  });
+
+  it('Should add modal.', () => {
+    const expectedAction = {
+      type: MODAL.ADD_MODAL,
+      payload: '001'
+    };
+    expect(actions.addModal('001')).to.deep.equal(expectedAction)
+  });
+
+  const middlewares = [thunk];
+  const mockStore = configureMockStore(middlewares);
+
+  it('Should handle add modal.', () => {
+    const mid = '001';
+    const expectedAction = {
+      type: MODAL.ADD_MODAL,
+      payload: mid
+    };
+
+    const store = mockStore({});
+    store.dispatch(actions.handleAddModal(mid));
+    expect(store.getActions()).to.deep.equal([expectedAction]);
+
   });
 });

@@ -3,7 +3,6 @@ import reducer from '../../message/messageReducer';
 import { MESSAGE } from '../../message/messageConstants'
 
 import { expect } from 'chai';
-import * as actions from '../../message/messageActions'
 
 
 let initialState = {};
