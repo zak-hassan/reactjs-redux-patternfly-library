@@ -6,7 +6,6 @@ import { MESSAGE } from '../../message/messageConstants'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 
-
 describe('MESSAGE -> SYNC ACTION TESTS', () => {
 
   it('Should create an action to set message visibility.', () => {
@@ -40,6 +39,7 @@ describe('MESSAGE -> SYNC ACTION TESTS', () => {
     };
     expect(actions.clearMessage()).to.deep.equal(expectedAction)
   });
+
 });
 
 const middlewares = [thunk];
@@ -66,5 +66,6 @@ describe('MESSAGE -> ASYNC ACTION TESTS', () => {
     return store.dispatch(actions.setMessageWithTimeout(message, type)).then(() => {
       expect(store.getActions()).to.deep.equal(expectedActions)
     });
-  })
+  });
+
 });
