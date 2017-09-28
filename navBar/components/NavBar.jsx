@@ -9,6 +9,14 @@ export class NavBar extends Component {
   static get propTypes(){
     return {
       config: PropTypes.object.isRequired,
+      customUtility: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.element
+      ]),
+      autoUtility: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.element
+      ]),
     }
   }
 
@@ -35,14 +43,36 @@ export class NavBar extends Component {
       return (i === 0) ? this.createIndexContainer(c ,i) : this.createLinkContainer(c, i);
     });
 
+    // Navbar Utility cases (custom, auto, or none)
+    let utility = null;
+    if(this.props.customUtility !== undefined){
+      utility = this.props.customUtility;
+    }
+    else if(this.props.autoUtility !== undefined){
+      utility =[
+        <button key={0} type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse-1">
+          <span className="sr-only">Toggle navigation</span>
+          <span className="icon-bar"/>
+          <span className="icon-bar"/>
+          <span className="icon-bar"/>
+        </button>,
+        <div key={1} className="collapse navbar-collapse navbar-collapse-1">
+          <ul className="nav navbar-nav navbar-utility">
+            {this.props.autoUtility}
+          </ul>
+        </div>
+        ]
+    }
+
     return (
-      <Navbar className="navbar navbar-default navbar-pf">
+      <Navbar className="navbar navbar-default navbar-pf" role="navigation">
         <Navbar.Header>
           <Navbar.Toggle/>
           <Link className="navbar-brand" to="/">
             <img src={titleSrc.path} alt={titleSrc.alt}/>
           </Link>
         </Navbar.Header>
+        {utility}
         <Navbar.Collapse>
           <Nav className="navbar-nav navbar-primary" >
             {categoryComponents}
