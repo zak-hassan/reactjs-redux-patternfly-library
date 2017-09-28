@@ -1,18 +1,21 @@
 import React, { Component } from "react";
-import { clearMessage } from "../message/messageActions";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import NavBar from "../navBar/components/NavBar.jsx";
 import Message from "../message/container/Message.jsx";
 
-export class App extends Component {
+class App extends Component {
 
   static get propTypes() {
     return {
       // Config Props, inherited from parent
       viewsConfig: PropTypes.array.isRequired,
       navbarConfig: PropTypes.object.isRequired,
+      customNavUtility: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.element
+      ]),
+      autoNavUtility: PropTypes.element
     }
   }
 
@@ -29,11 +32,22 @@ export class App extends Component {
     )
   }
 
+  _createNavBar(){
+    if(this.props.customNavUtility !== undefined){
+      return <NavBar config={this.props.navbarConfig} customUtility={this.props.customNavUtility}/>
+    }else if(this.props.autoNavUtility !== undefined){
+      return <NavBar config={this.props.navbarConfig} autoUtility={this.props.autoNavUtility}/>
+    }
+    return (
+      <NavBar config={this.props.navbarConfig}/>
+    )
+  }
+
   render() {
     return (
       <Router>
         <div className="app">
-          <NavBar config={this.props.navbarConfig}/>
+          {this._createNavBar()}
           <Message/>
           {this._createSwitches()}
         </div>
