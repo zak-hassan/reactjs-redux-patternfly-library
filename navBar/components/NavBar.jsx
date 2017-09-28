@@ -13,7 +13,10 @@ export class NavBar extends Component {
         PropTypes.array,
         PropTypes.element
       ]),
-      autoUtility: PropTypes.element,
+      autoUtility: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.element
+      ]),
     }
   }
 

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import NavBar from "../navBar/components/NavBar.jsx";
 import Message from "../message/container/Message.jsx";
 
-class App extends Component {
+export class App extends Component {
 
   static get propTypes() {
     return {
@@ -15,7 +15,10 @@ class App extends Component {
         PropTypes.array,
         PropTypes.element
       ]),
-      autoNavUtility: PropTypes.element
+      autoNavUtility: PropTypes.oneOfType([
+        PropTypes.array,
+        PropTypes.element
+      ]),
     }
   }
 
