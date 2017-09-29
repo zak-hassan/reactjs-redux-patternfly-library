@@ -25,9 +25,9 @@ export class ButtonComponent extends Component{
 
   render(){
     return (
-      <div className="pointer" onClick={this.openModel}>
+      <span className="pointer" onClick={this.openModel}>
         {this.props.content}
-      </div>
+      </span>
     );
   }
 }
