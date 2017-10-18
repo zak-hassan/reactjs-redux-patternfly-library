@@ -61,15 +61,26 @@ export class NavBar extends Component {
             {this.props.autoUtility}
           </ul>
         </div>
-        ]
+      ]
     }
+
+    let title = null;
+    let useImage = titleSrc.useImage;
+    if(useImage === undefined || useImage === false)
+      if (titleSrc.title !== undefined)
+        title = titleSrc.title;
+      else
+        title = <label>{titleSrc.alt}</label>;
+    else
+      title = <img src={titleSrc.path} alt={titleSrc.alt}/>;
+
 
     return (
       <Navbar className="navbar navbar-default navbar-pf" role="navigation">
         <Navbar.Header>
           <Navbar.Toggle/>
           <Link className="navbar-brand" to="/">
-            <img src={titleSrc.path} alt={titleSrc.alt}/>
+            {title}
           </Link>
         </Navbar.Header>
         {utility}
