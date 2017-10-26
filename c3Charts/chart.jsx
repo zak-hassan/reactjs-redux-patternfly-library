@@ -5,7 +5,12 @@ export class ChartComponent extends Component{
 
   static get propTypes() {
     return {
-      config: PropTypes.object,
+      config: PropTypes.shape({
+        bindto: PropTypes.string.isRequired,
+        data: PropTypes.shape({
+          columns: PropTypes.array.isRequired
+        }).isRequired
+      }).isRequired,
       element: PropTypes.string,
       generateCallback: PropTypes.func,
     }
