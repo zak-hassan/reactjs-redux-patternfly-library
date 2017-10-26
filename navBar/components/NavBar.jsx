@@ -43,7 +43,7 @@ export class NavBar extends Component {
       return (i === 0) ? this.createIndexContainer(c ,i) : this.createLinkContainer(c, i);
     });
 
-    // Navbar Utility cases (custom, auto, or none)
+    // Navbar Utility cases, users can add custom element or a list element pre-configured
     let utility = null;
     if(this.props.customUtility !== undefined){
       utility = this.props.customUtility;
