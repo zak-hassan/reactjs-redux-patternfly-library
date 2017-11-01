@@ -14,3 +14,5 @@ global.jQuery = jquery;
 global.window.jquery = jquery;
 global.window.jQuery = jquery;
 
+
+

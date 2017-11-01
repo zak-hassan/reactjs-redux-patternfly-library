@@ -14,10 +14,8 @@ class Table extends Component {
     /* Table has not been created (see ComponentDidMount()).*/
     if(this.props.config.data.length === 0)
       return true;
-    else if(nextProps.config.data !== this.props.config.data)
+    else if (nextProps.config.data !== this.props.config.data)
       this._reloadTableData(nextProps.config.data);
-    else
-      this._updateTable(nextProps.config.data);
 
     return false;
   }
@@ -27,30 +25,6 @@ class Table extends Component {
     table.clear();
     table.rows.add(data);
     table.draw();
-  }
-
-  // TODO: Currently not called as state creates a new object.
-  // Should identify table using another uid rather than reference.
-  _updateTable(newData) {
-    const table = $(this.table).DataTable();
-    let dataChanged = false;
-    table.rows().every(function () {
-      const oldDataRow = this.data();
-      const newDataRow = newData.find((newRow) => {
-        return _.isEqual(newRow, oldDataRow);
-      });
-
-      if (_.isEqual(newDataRow, oldDataRow)) {
-        dataChanged = true;
-        this.data(newDataRow);
-      }
-      return true; // RCA esLint configuration wants us to
-      // return something
-    });
-
-    if (dataChanged) {
-      table.draw();
-    }
   }
 
   render() {
