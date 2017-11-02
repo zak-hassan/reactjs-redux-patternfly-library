@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import TableFooter from './TableFooter.jsx';
-import * as _ from 'underscore';
 
 class Table extends Component {
   static get propTypes() {
