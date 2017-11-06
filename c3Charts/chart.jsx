@@ -49,7 +49,7 @@ export class ChartComponent extends Component{
 
   _generateChart(config) {
     this.chart = c3.generate(config);
-    if(this.props.generateCallback !== undefined) this.props.generateCallback();
+    if(this.props.generateCallback !== undefined) this.props.generateCallback(this.chart);
   }
 
   _destroyChart() {
